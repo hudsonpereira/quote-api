@@ -1,8 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const environment = process.env.NODE_ENV || 'development';
-const PORT = environment == 'development' ? 8080 : 80;
+app.set('port', (process.env.PORT || 5000));
 
 app.use(cors());
 
@@ -25,6 +24,6 @@ app.get('/quote', function(req, res) {
     });
 });
 
-app.listen(PORT, function() {
-    console.log('listening at ' + PORT);
+app.listen(app.get('port'), function() {
+    console.log('listening at ' + app.get('port'));
 })
